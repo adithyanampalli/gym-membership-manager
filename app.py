@@ -1,5 +1,5 @@
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
+import requests
 from snowflake.snowpark.functions import col
 import pandas as pd
 
@@ -8,7 +8,9 @@ st.title("Gym Membership Manager")
 st.write("Manage gym memberships, track attendance, and generate reports.")
 
 # Initialize Snowflake session
-session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session()
+
 
 # Sidebar menu
 menu = ["Manage Members", "Attendance", "Reports"]
